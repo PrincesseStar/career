@@ -3,9 +3,6 @@
 <html>
 <head>
 <title>Write</title>
-<script>
-
-</script>
 </head>
 <body>
 	<div class="div_input">
@@ -27,8 +24,14 @@
 			<form:input type="text" path="location" class="input_content" />
 		</div>				
 		<div class="div_input1">
-			<label for="" class="label_input1" height="1000">내용</label>
-			<form:textarea path="content" class="textarea1"/>
+			<!--<label for="" class="label_input1" height="1000">내용</label>-->
+			<form:textarea path="content" id="content" class="textarea1"/>
+			<script type="text/javascript">
+				 CKEDITOR.replace('content',{
+					 height: 150,
+					 width: 700
+				 });
+			</script>
 		</div>
 		<div class=div_input2>
 			<button type="submit" id="save" class="btn_save">저장하기</button>	

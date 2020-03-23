@@ -18,8 +18,8 @@
 	<!-- MySql DataSource -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-	    <!--<property name="url" value="jdbc:mysql://umj7-010.cafe24.com/chloveon?useSSL=false&amp;serverTimezone=UTC"/>-->
-	    <property name="url" value="jdbc:mysql://localhost/chloveon?useSSL=false&amp;serverTimezone=UTC"/>
+	    <property name="url" value="jdbc:mysql://umj7-010.cafe24.com/chloveon?useSSL=false&amp;serverTimezone=UTC"/>
+	    <!--<property name="url" value="jdbc:mysql://localhost/chloveon?useSSL=false&amp;serverTimezone=UTC"/>-->
 	    <!--<property name="url" value="jdbc:mysql://umj7-011.cafe24.com/jjdlog2?useSSL=false&amp;serverTimezone=UTC"/>-->
 	    <!--<property name="url" value="jdbc:mysql://localhost/jjdlog2?useSSL=false&amp;serverTimezone=UTC"/>-->
 	    <!--<property name="username" value="jjdlog2"/>-->

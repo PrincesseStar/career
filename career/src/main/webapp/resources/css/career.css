@@ -280,3 +280,10 @@ table.type12 td {
 	width: 632px;
 	vertical-align: top;
 }
+
+.ck.ck-editor {
+	max-width: 500px;
+}
+.ch-editor__editable {
+	min-height: 300px;
+}
