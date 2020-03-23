@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.career.common">
+	
+	<select id="searchCd" resultType="commonVO">
+		SELECT 
+		       CODE_DTL_CD AS CODEDTLCD
+		     , CODE_DTL_NM AS CODEDTLNM
+		  FROM chloveon.CODE_DTL
+		 WHERE 1=1
+		   AND CODE_CD = #{mstCode}
+	</select>	
+
+</mapper>

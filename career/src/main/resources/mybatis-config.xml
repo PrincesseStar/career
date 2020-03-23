@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "=//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ 
+<configuration>
+
+    <settings>
+    	<setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.career.model.vo.MemberVO" alias="memberVO"/>
+        <typeAlias type="com.career.model.vo.ContentVO" alias="contentVO"/>
+        <typeAlias type="com.career.model.vo.CommonVO" alias="commonVO"/>
+        <typeAlias type="com.career.model.vo.ProjectVO" alias="projectVO"/>
+    </typeAliases>
+
+    <mappers>
+    	<mapper resource="mappers/commonSql.xml"/>
+    	<mapper resource="mappers/contentSql.xml"/>
+    	<mapper resource="mappers/memberSql.xml"/>
+    	<mapper resource="mappers/projectSql.xml"/>
+    </mappers>
+        
+</configuration>

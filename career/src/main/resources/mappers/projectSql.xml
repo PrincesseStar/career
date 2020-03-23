@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.career.project">
+	
+	<select id="projectList" resultType="projectVO">
+		SELECT 
+		       T01.SEQ
+		     , T01.SITE_ID
+		     , T01.PRJ_NAME
+		     , T01.STATE
+		     , T01.KEYWORD
+		     , T01.PRJ_MEMO
+		     , DATE_FORMAT(T01.CREATE_DT, '%Y-%m-%d') AS CREATE_DT
+		     , DATE_FORMAT(T01.EDIT_DT, '%Y-%m-%d') AS EDIT_DT
+		  FROM jjdlog2.TPROJECT T01
+		 WHERE 1=1
+		 ORDER BY T01.CREATE_DT DESC
+	</select>
+	
+	<select id="projectDetail" resultType="projectVO">
+		SELECT 
+		       T01.SEQ
+		     , T01.SITE_ID
+		     , T01.PRJ_NAME
+		     , T01.STATE
+		     , T01.KEYWORD
+		     , T01.PRJ_MEMO
+		     , DATE_FORMAT(T01.CREATE_DT, '%Y-%m-%d') AS CREATE_DT
+		     , DATE_FORMAT(T01.EDIT_DT, '%Y-%m-%d') AS EDIT_DT
+		  FROM jjdlog2.TPROJECT T01
+		 WHERE 1=1
+		   AND T01.SEQ=#{seq}
+	</select>	
+
+</mapper>

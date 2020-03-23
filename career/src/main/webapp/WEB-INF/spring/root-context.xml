@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- MySql DataSource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	    <!--<property name="url" value="jdbc:mysql://umj7-010.cafe24.com/chloveon?useSSL=false&amp;serverTimezone=UTC"/>-->
+	    <property name="url" value="jdbc:mysql://localhost/chloveon?useSSL=false&amp;serverTimezone=UTC"/>
+	    <!--<property name="url" value="jdbc:mysql://umj7-011.cafe24.com/jjdlog2?useSSL=false&amp;serverTimezone=UTC"/>-->
+	    <!--<property name="url" value="jdbc:mysql://localhost/jjdlog2?useSSL=false&amp;serverTimezone=UTC"/>-->
+	    <!--<property name="username" value="jjdlog2"/>-->
+	    <!--<property name="password" value="j2t2!@!@2"/>-->
+	    <property name="username" value="chloveon"/>
+	    <property name="password" value="chyn1357"/>	    
+	</bean>  
+
+    <!-- MyBatis SqlSessionFactoryBean -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource"/>
+	    <property name="configLocation" value="classpath:/mybatis-config.xml"/>
+	    <!--<property name="mapperLocations" value="classpath:mappers/*Sql.xml"/>-->
+	</bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+    </bean>	
+		
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+			
+</beans>
+
