@@ -2,7 +2,6 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <html>
 <head>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
     //전역변수선언
