@@ -2,6 +2,35 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <html>
 <head>
+<script type="text/javascript">
+$(function(){
+    //전역변수선언
+    var editor_object = [];
+     
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: editor_object,
+        elPlaceHolder: "content",
+        sSkinURI: "${pageContext.request.contextPath}/resources/smartEditor/SmartEditor2Skin.html",
+        htParams : {
+            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseToolbar : true,            
+            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseVerticalResizer : true,    
+            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseModeChanger : true,
+        }
+    });
+     
+    //전송버튼 클릭이벤트
+    $("#savebutton").click(function(){
+        //id가 smarteditor인 textarea에 에디터에서 대입
+        editor_object.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+         
+        // 이부분에 에디터 validation 검증
+    })
+})
+
+</script>
 <title>Write</title>
 </head>
 <body>
@@ -24,14 +53,8 @@
 			<form:input type="text" path="location" class="input_content" />
 		</div>				
 		<div class="div_input1">
-			<!--<label for="" class="label_input1" height="1000">내용</label>-->
+			<label for="" class="label_input1" height="1000">내용</label>
 			<form:textarea path="content" id="content" class="textarea1"/>
-			<script type="text/javascript">
-				 CKEDITOR.replace('content',{
-					 height: 150,
-					 width: 700
-				 });
-			</script>
 		</div>
 		<div class=div_input2>
 			<button type="submit" id="save" class="btn_save">저장하기</button>	
