@@ -1,39 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <html>
-<head>
-<script type="text/javascript">
-$(function(){
-    //전역변수선언
-    var editor_object = [];
-     
-    nhn.husky.EZCreator.createInIFrame({
-        oAppRef: editor_object,
-        elPlaceHolder: "content",
-        sSkinURI: "${pageContext.request.contextPath}/resources/smartEditor/SmartEditor2Skin.html",
-        htParams : {
-            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseToolbar : true,            
-            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseVerticalResizer : true,    
-            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseModeChanger : true,
-        }
-    });
-     
-    //전송버튼 클릭이벤트
-    $("#savebutton").click(function(){
-        //id가 smarteditor인 textarea에 에디터에서 대입
-        editor_object.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-         
-        // 이부분에 에디터 validation 검증
-        //폼 submit
-        $("#frm").submit();
-
-    })
-})
-
-</script>
+<head>	
 <title>Write</title>
 </head>
 <body>
@@ -56,12 +24,34 @@ $(function(){
 			<form:input type="text" path="location" class="input_content" />
 		</div>				
 		<div class="div_input1">
-			<!--<label for="" class="label_input1" height="1000">내용</label>-->
-			<textarea name="content" id="content" class="textarea1"/>
-		</div>
+			<textarea id="content" name="content" class="textarea1"></textarea>
+			<script type="text/javascript">
+				var oEditors = [];
+				nhn.husky.EZCreator.createInIFrame({
+					oAppRef: oEditors,
+					elPlaceHolder: "content",
+					sSkinURI: "${pageContext.request.contextPath}/resources/smartEditor/SmartEditor2Skin.html",
+					htParams : {
+						bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+						bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+						bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+						bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
+						//aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+						fOnBeforeUnload : function(){
+							alert("완료!");
+						},
+					}, //boolean
+					fOnAppLoad : function(){
+						//예제 코드
+						oEditors.getById["content"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+					},
+					fCreator: "createSEditor2"
+				});
+			</script>	
+		</div>	
 		<div class=div_input2>
-			<!--<button type="submit" id="save" class="btn_save">저장하기</button>-->
-		</div>			
-	</form:form>
+			<button type="submit" id="save" class="btn_save">저장하기</button>
+		</div>				
+	</form:form>	
 </body>
 </html>

@@ -162,7 +162,7 @@ table.type12 td {
 }
 .div_input1 {
 	width: 1000px;
-	height: 100px;
+	height: 250px;
 	margin: -5px 10px 0px;
 }
 .div_input2 {
@@ -269,7 +269,7 @@ table.type12 td {
     cursor: text;
     margin: 2px -2px 0px;
     font: 400 13.3333px Arial;
-    padding: 1px 0px;
+    padding: 10px 10px;
     -border-width: 2px;
     border-style: inset;
     border-color: initial;
@@ -277,7 +277,7 @@ table.type12 td {
 	font-size: 11px;
 	padding: 1px;
 	height: 106px;
-	width: 632px;
+	width: 700px;
 	vertical-align: top;
 }
 
