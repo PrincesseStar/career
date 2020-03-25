@@ -2,6 +2,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <html>
 <head>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
     //전역변수선언
@@ -27,6 +28,9 @@ $(function(){
         editor_object.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
          
         // 이부분에 에디터 validation 검증
+        //폼 submit
+        $("#frm").submit();
+
     })
 })
 
@@ -53,11 +57,11 @@ $(function(){
 			<form:input type="text" path="location" class="input_content" />
 		</div>				
 		<div class="div_input1">
-			<label for="" class="label_input1" height="1000">내용</label>
-			<form:textarea path="content" id="content" class="textarea1"/>
+			<!--<label for="" class="label_input1" height="1000">내용</label>-->
+			<textarea name="content" id="content" class="textarea1"/>
 		</div>
 		<div class=div_input2>
-			<button type="submit" id="save" class="btn_save">저장하기</button>	
+			<!--<button type="submit" id="save" class="btn_save">저장하기</button>-->
 		</div>			
 	</form:form>
 </body>
