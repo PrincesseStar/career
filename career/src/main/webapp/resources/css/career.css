@@ -162,13 +162,18 @@ table.type12 td {
 }
 .div_input1 {
 	width: 1000px;
-	height: 250px;
+	height: 300px;
 	margin: -5px 10px 0px;
 }
 .div_input2 {
 	width: 1000px;
 	height: 27px;
 	margin: 5px 10px 0px;
+}
+.div_smartEditer {
+	width: 1000px;
+	height: 250px;
+	margin: -301px 80px 0px;	
 }
 .input_login {
 	width: 200px;
@@ -237,7 +242,7 @@ table.type12 td {
 .label_input1 {
     margin: 2px 0px 0px;
     width: 60px;
-    height: 100px;
+    height: 247px;
     font-size: 11px;
     color: white;
     background-color: #01A7A1;
@@ -277,7 +282,7 @@ table.type12 td {
 	font-size: 11px;
 	padding: 1px;
 	height: 106px;
-	width: 700px;
+	width: 630px;
 	vertical-align: top;
 }
 

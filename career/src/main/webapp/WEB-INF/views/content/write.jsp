@@ -24,6 +24,9 @@
 			<form:input type="text" path="location" class="input_content" />
 		</div>				
 		<div class="div_input1">
+			<label for="" class="label_input1" height="1000">내용</label>
+		</div>
+		<div class="div_smartEditer">
 			<textarea id="content" name="content" class="textarea1"></textarea>
 			<script type="text/javascript">
 				var oEditors = [];
