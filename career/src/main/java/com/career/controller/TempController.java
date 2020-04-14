@@ -57,7 +57,7 @@ public class TempController {
 		logger.info("Size : "+list.size());
 		List<CommonVO> searchCd = commonService.searchCd("MST03");
 		ModelAndView forward = new ModelAndView();
-		forward.setViewName("content/temp");
+		forward.setViewName("temp/list");
 		forward.addObject("keyward", keyward);
 		forward.addObject("searchOption", searchOption);
 		forward.addObject("list", list);
@@ -72,7 +72,7 @@ public class TempController {
 		ModelAndView forward = new ModelAndView();
 		forward.addObject("Content", contentVo);
 		forward.addObject("language", searchCd);
-		forward.setViewName("content/writeTemp");
+		forward.setViewName("temp/write");
 		return forward;
 	}
 
@@ -85,5 +85,15 @@ public class TempController {
 		forward.setViewName("redirect:/temp/list.do");
 		return forward;
 	}
+	
+	@RequestMapping(value = "detail.do", method = RequestMethod.POST)
+	public ModelAndView tempDetail(TempVO tempVo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info("Gubun : "+tempVo.getGubun());
+		logger.info("Content : "+tempVo.getContent());
+		tempService.insertTemp(tempVo, session);
+		ModelAndView forward = new ModelAndView();		
+		forward.setViewName("redirect:/temp/list.do");
+		return forward;
+	}	
 	
 }

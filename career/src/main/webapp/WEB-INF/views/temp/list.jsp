@@ -22,10 +22,9 @@
 <div class="div_select">
 	<br>
 	<c:forEach var="row" items="${list}">
-	<table class="type11">
+	<table class="type12">
 		<th width="70%" scope="cols" align="left">${row.gubun}</th>
-		<th width="5%" scope="cols">
-			<button type="button" id="write" class="btn_menu">수정</button>
+		<th width="5%" scope="cols"><a href="${pageContext.request.contextPath}/temp/modify.do?seq=${row.seq}">수정</a></button>
 		</th>	
 		<tr>
 			<td colspan="2" align="left">${row.content}</td>
