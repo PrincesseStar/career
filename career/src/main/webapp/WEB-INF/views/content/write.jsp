@@ -3,6 +3,15 @@
 <html>
 <head>	
 <title>Write</title>
+<script>
+	$(document).ready(function(){
+		$("#save").click(function(){
+			alert("test");
+			oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+			$("#content").submit();
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="div_input">

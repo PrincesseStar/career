@@ -4,13 +4,11 @@
 <head>
 <title>Main</title>
 <script>
-
 	$(document).ready(function(){
 		$("#write").click(function(){
 			location.href = "${pageContext.request.contextPath}/content/write.do";
 		});
 	});
-
 </script>
 </head>
 <body>

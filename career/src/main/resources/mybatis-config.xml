@@ -12,6 +12,7 @@
         <typeAlias type="com.career.model.vo.ContentVO" alias="contentVO"/>
         <typeAlias type="com.career.model.vo.CommonVO" alias="commonVO"/>
         <typeAlias type="com.career.model.vo.ProjectVO" alias="projectVO"/>
+        <typeAlias type="com.career.model.vo.TempVO" alias="tempVO"/>
     </typeAliases>
 
     <mappers>
@@ -19,6 +20,7 @@
     	<mapper resource="mappers/contentSql.xml"/>
     	<mapper resource="mappers/memberSql.xml"/>
     	<mapper resource="mappers/projectSql.xml"/>
+    	<mapper resource="mappers/tempSql.xml"/>
     </mappers>
         
 </configuration>

@@ -14,7 +14,14 @@ public class ContentVO {
 	private String location;
 	private String regId;
 	private String regDate;
+	private String gubun;
 	
+	public String getGubun() {
+		return gubun;
+	}
+	public void setGubun(String gubun) {
+		this.gubun = gubun;
+	}
 	public int getSeq() {
 		return seq;
 	}

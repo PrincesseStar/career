@@ -75,10 +75,11 @@ public class ContentController {
 	
 	@RequestMapping(value = "save.do", method = RequestMethod.POST)
 	public ModelAndView contentSave(ContentVO contentVo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info("Title : "+contentVo.getTitle());
+		logger.info("Gubun : "+contentVo.getGubun());
 		contentService.projectInsert(contentVo, session);
 		ModelAndView forward = new ModelAndView();		
 		forward.setViewName("redirect:/content/list.do");
 		return forward;
+		
 	}
 }

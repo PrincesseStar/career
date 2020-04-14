@@ -170,10 +170,15 @@ table.type12 td {
 	height: 27px;
 	margin: 5px 10px 0px;
 }
+.div_area {
+	width: 1000px;
+	heigth: 27px;
+	margin: -5px 10px 10px;
+}
 .div_smartEditer {
 	width: 1000px;
 	height: 250px;
-	margin: -301px 80px 0px;	
+	margin: -300px 80px 0px;	
 }
 .input_login {
 	width: 200px;
