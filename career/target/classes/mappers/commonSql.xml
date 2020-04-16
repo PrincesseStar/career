@@ -7,9 +7,63 @@
 		SELECT 
 		       CODE_DTL_CD AS CODEDTLCD
 		     , CODE_DTL_NM AS CODEDTLNM
-		  FROM chloveon.CODE_DTL
+		  FROM TDTL_CODE
 		 WHERE 1=1
 		   AND CODE_CD = #{mstCode}
+	</select>	
+
+	<select id="searchSkill" resultType="commonVO">
+		SELECT 
+		       SKILL_NAME
+		  FROM TSKILL_CODE T01
+		 WHERE 1=1
+		   AND T01.USE_YN = 'Y'
+		 ORDER BY T01.ORDER_NO ASC
+	</select>	
+	
+	<select id="searchFState" resultType="commonVO">
+		SELECT 
+		       STATE_NAME AS FIRST_STATUS
+		  FROM TFIRST_CODE
+		 WHERE 1=1
+		   AND USE_YN = 'Y'
+		 ORDER BY ORDER_NO ASC
+	</select>
+
+	<select id="searchNState" resultType="commonVO">
+		SELECT 
+		       STATE_NAME AS NOW_STATUS
+		  FROM TNOW_CODE
+		 WHERE 1=1
+		   AND USE_YN = 'Y'
+		 ORDER BY ORDER_NO ASC
+	</select>	
+	
+	<select id="searchBusiness" resultType="commonVO">
+		SELECT 
+		       STATE_NAME AS BUSINESS_STATUS
+		  FROM TBUSINESS_STATE
+		 WHERE 1=1
+		   AND USE_YN = 'Y'
+		 ORDER BY ORDER_NO ASC
+	</select>	
+		
+	<select id="searchImport" resultType="commonVO">
+		SELECT 
+		       CODE_NAME    AS IMPORT_STATUS
+		  FROM TIMPORT_CODE
+		 WHERE 1=1
+		   AND USE_YN = 'Y'
+		 ORDER BY ORDER_NO ASC
+	</select>		
+	
+	<select id="searchLicense" resultType="commonVO">
+		SELECT 
+		       LICENSE_NAME    AS LICENSE_STATUS
+		  FROM TLICENSE_CODE
+		 WHERE 1=1
+		   AND USE_YN = 'Y'
+		 ORDER BY ORDER_NO ASC
 	</select>	
 
 </mapper>

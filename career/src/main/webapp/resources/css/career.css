@@ -27,6 +27,15 @@ p3
 	font-family:arial;	
 	color:#01A7A1;
 }
+p5
+{
+	font-syle:italic;
+	font-variant:small-cpas;
+	font-weight:bold;
+	font-size:11px;
+	font-family:arial;	
+	color:#01A7A1;
+}
 fieldset, img {
     border: 0;
 }
@@ -227,7 +236,7 @@ table.type12 td {
     border:none
 }
 .btn_save {
-    margin: 5px 632px 0px; 
+    margin: 2px 629px 0px; 
     width: 70px;
     height: 19px;
     font-size: 11px;
@@ -254,8 +263,26 @@ table.type12 td {
     border:none	
 }
 .select1 {
-	width: 100px;
-	height: 22px;
+	width: 161px;
+	height: 21px;
+	border: 1px solid #999;
+	font-family: inherit;
+	font-size: 11px;
+	appearance: none;
+	margin: 0px -2px 0px;
+}
+.select2 {
+	width: 57px;
+	height: 21px;
+	border: 1px solid #999;
+	font-family: inherit;
+	font-size: 11px;
+	appearance: none;
+	margin: 0px -2px 0px;
+}
+.select3 {
+	width: 395px;
+	height: 21px;
 	border: 1px solid #999;
 	font-family: inherit;
 	font-size: 11px;
@@ -287,7 +314,7 @@ table.type12 td {
 	font-size: 11px;
 	padding: 1px;
 	height: 106px;
-	width: 630px;
+	width: 627px;
 	vertical-align: top;
 }
 

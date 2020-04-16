@@ -16,9 +16,45 @@ public class CommonDAOImpl implements CommonDAO{
 	SqlSession sqlSession;
 	
 	@Override
-	public List<CommonVO> searchCd(String mstCode) {
+	public List<CommonVO> searchCd(String mstCode) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("com.career.common.searchCd", mstCode);
 	}
+	
+	@Override
+	public List<CommonVO> searchSkill() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.career.common.searchSkill");
+	}
+
+	@Override
+	public List<CommonVO> searchFState() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.career.common.searchFState");
+	}
+
+	@Override
+	public List<CommonVO> searchNState() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.career.common.searchNState");
+	}
+
+	@Override
+	public List<CommonVO> searchBusiness() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.career.common.searchBusiness");
+	}
+
+	@Override
+	public List<CommonVO> searchImport() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.career.common.searchImport");
+	}
+
+	@Override
+	public List<CommonVO> searchLicense() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.career.common.searchLicense");
+	}	
 
 }

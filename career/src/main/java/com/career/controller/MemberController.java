@@ -68,7 +68,7 @@ public class MemberController {
 		ModelAndView forward = new ModelAndView();
 
 		if(check) {
-			url = "redirect:/content/list.do";
+			url = "redirect:/developer/list.do";
 		}else {
 			url = "member/login";
 			bindingResult.rejectValue("userPw", "notMatch", "아이디 또는 패스워드가 일치하지 않습니다");

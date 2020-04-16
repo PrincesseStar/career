@@ -26,10 +26,46 @@ public class CommonServiceImpl implements CommonService{
 	CommonDAO commonDao;
 	
 	@Override
-	public List<CommonVO> searchCd(String mstCode) {
+	public List<CommonVO> searchCd(String mstCode) throws Exception {
 		// TODO Auto-generated method stub
 		logger.info("CommonService Start...");
 		return commonDao.searchCd(mstCode);
+	}
+
+	@Override
+	public List<CommonVO> searchSkill() throws Exception {
+		// TODO Auto-generated method stub
+		return commonDao.searchSkill();
+	}
+
+	@Override
+	public List<CommonVO> searchFState() throws Exception {
+		// TODO Auto-generated method stub
+		return commonDao.searchFState();
+	}
+
+	@Override
+	public List<CommonVO> searchNState() throws Exception {
+		// TODO Auto-generated method stub
+		return commonDao.searchNState();
+	}
+
+	@Override
+	public List<CommonVO> searchBusiness() throws Exception {
+		// TODO Auto-generated method stub
+		return commonDao.searchBusiness();
+	}
+
+	@Override
+	public List<CommonVO> searchImport() throws Exception {
+		// TODO Auto-generated method stub
+		return commonDao.searchImport();
+	}
+
+	@Override
+	public List<CommonVO> searchLicense() throws Exception {
+		// TODO Auto-generated method stub
+		return commonDao.searchLicense();
 	}
 
 }

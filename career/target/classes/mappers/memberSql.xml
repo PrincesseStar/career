@@ -4,8 +4,8 @@
 <mapper namespace="com.career.member">
 	
 	<select id="memberCheck" resultType="String">
-		SELECT MAX(NAME) AS NAME
-  		  FROM chloveon.MEMBER
+		SELECT MAX(NM) AS NAME
+  		  FROM TMEMBER
   		 WHERE 1=1
   		   AND ID = #{userId}
   		   AND PW = #{userPw}
@@ -14,8 +14,8 @@
 	<select id="memberView" resultType="memberVO">
 		SELECT ID   AS USER_ID
 		     , PW   AS USER_PW
-		     , NAME AS USER_NAME
-  		  FROM chloveon.MEMBER
+		     , NM AS USER_NAME
+  		  FROM TMEMBER
   		 WHERE 1=1
   		   AND ID = #{userId}
   		   AND PW = #{userPw}

@@ -63,7 +63,7 @@ public class ContentController {
 	}
 	
 	@RequestMapping(value = "write.do", method = RequestMethod.POST)
-	public ModelAndView contentWrite(ContentVO contentVo, BindingResult bindingResult) {
+	public ModelAndView contentWrite(ContentVO contentVo, BindingResult bindingResult) throws Exception{
 		//코드성데이터 조회
 		List<CommonVO> searchCd = commonService.searchCd("MST02");
 		ModelAndView forward = new ModelAndView();
