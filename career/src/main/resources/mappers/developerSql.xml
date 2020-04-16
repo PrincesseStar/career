@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.career.developer">
+	
+	<select id="list" resultType="developerVO">
+		SELECT 
+		       T01.SEQ
+		     , T01.NAME
+		     , T01.TELNO
+		     , T01.EMAIL
+		     , T01.SKILL1
+		     , T01.SKILL2
+		     , T01.SKILL3
+		     , T01.IMPORT AS IMPORT1
+		     , T01.BUSINESS
+		     , T01.BIRTH
+		     , T01.AREA1
+		     , T01.AREA2
+		     , T01.GRADE
+		     , T01.LICENSE
+		     , T01.FIRST_STATUS
+		     , T01.NOW_STATUS
+		     , T01.PROJECT
+		     , T01.FINISH_DATE
+		     , CASE WHEN LENGTH(T01.MEMO) > 35 THEN CONCAT(SUBSTR(T01.MEMO,1, 35), '...')
+			        ELSE T01.MEMO
+			    END AS MEMO
+		  FROM TPERSON T01
+		 WHERE 1=1
+		 <include refid="search"/>
+		 ORDER BY T01.SEQ DESC
+	</select>
+
+	<sql id="search">
+		<choose>
+			<when test="searchOption=='ALL'">
+				  AND (T01.TELNO LIKE '%${keyward}%' OR T01.NAME LIKE '%${keyward}%')
+			</when>
+			<otherwise>
+				  AND T01.${searchOption} LIKE '%${keyward}%'
+			</otherwise>
+		</choose>
+	</sql>
+
+</mapper>
