@@ -36,4 +36,17 @@ public class DeveloperServiceImpl implements DeveloperService{
 		return developerDAO.list(searchOption, keyward);
 	}
 
+	@Override
+	public void insertPerson(DeveloperVO developerVO) throws Exception {
+		// TODO Auto-generated method stub
+		developerDAO.insertPerson(developerVO);
+	}
+
+	@Override
+	public DeveloperVO detailPerson(int seq) throws Exception {
+		// TODO Auto-generated method stub
+		logger.info(this.getClass().toString());
+		return developerDAO.detailPersion(seq);
+	}
+
 }

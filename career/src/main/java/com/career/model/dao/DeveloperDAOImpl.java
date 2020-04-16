@@ -36,7 +36,19 @@ public class DeveloperDAOImpl implements DeveloperDAO{
 		Map<String, String> searchMap = new HashMap<String, String>();
 		searchMap.put("searchOption", searchOption);
 		searchMap.put("keyward", keyward);
-		return sqlSession.selectList("com.career.developer.list", searchMap);
+		return sqlSession.selectList("com.career.developer.selectlist", searchMap);
+	}
+
+	@Override
+	public void insertPerson(DeveloperVO developerVO) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert("com.career.developer.insertPerson", developerVO);
+	}
+
+	@Override
+	public DeveloperVO detailPersion(int seq) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.career.developer.detailPerson", seq);
 	}
 
 }

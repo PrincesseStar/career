@@ -13,4 +13,6 @@ import com.career.model.vo.DeveloperVO;
  */
 public interface DeveloperDAO {
 	public List<DeveloperVO> list(String searchOption, String keyward) throws Exception;
+	public void insertPerson(DeveloperVO developerVO) throws Exception;
+	public DeveloperVO detailPersion(int seq) throws Exception;
 }

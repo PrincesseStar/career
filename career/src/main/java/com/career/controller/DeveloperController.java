@@ -64,6 +64,13 @@ public class DeveloperController {
 		return forward;
 	}
 	
+	/**
+	 * 
+	 * @param developerVo
+	 * @param bindingResult
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "write.do", method = RequestMethod.POST)
 	public ModelAndView write(DeveloperVO developerVo, BindingResult bindingResult) throws Exception{
 		//코드성데이터 조회
@@ -84,6 +91,46 @@ public class DeveloperController {
 		forward.addObject("licenseStatus", licenseStatus);
 		forward.setViewName("developer/write");
 		return forward;
+	}	
+	
+	/**
+	 * 
+	 * @param developerVo
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "save.do", method = RequestMethod.POST)	
+	public ModelAndView save(DeveloperVO developerVo, HttpSession session) throws Exception{
+		logger.debug("License : "+developerVo.getLicense());
+		logger.debug("MEMO : "+developerVo.getMemo());
+		developerService.insertPerson(developerVo);
+		ModelAndView view = new ModelAndView();
+		view.setViewName("redirect:/developer/list.do");
+		return view;
+	}
+	
+	@RequestMapping(value = "detail.do", method = RequestMethod.POST)
+	public ModelAndView detail(@RequestParam int seq, HttpSession session) throws Exception {
+		//코드성데이터 조회
+		List<CommonVO> skill = commonService.searchSkill();
+		List<CommonVO> firstStatus = commonService.searchFState();
+		List<CommonVO> nowStatus = commonService.searchNState();
+		List<CommonVO> businessStatus = commonService.searchBusiness();
+		List<CommonVO> importStatus = commonService.searchImport();
+		List<CommonVO> licenseStatus = commonService.searchLicense();		
+		logger.info("Seq: "+seq);
+		DeveloperVO developerVo = developerService.detailPerson(seq);
+		ModelAndView view = new ModelAndView();
+		view.addObject("developer", developerVo);
+		view.addObject("skill", skill);
+		view.addObject("firstStatus", firstStatus);
+		view.addObject("nowStatus", nowStatus);
+		view.addObject("businessStatus", businessStatus);
+		view.addObject("importStatus", importStatus);
+		view.addObject("licenseStatus", licenseStatus);		
+		view.setViewName("developer/detail");
+		return view;
 	}	
 	
 }

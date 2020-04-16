@@ -3,7 +3,7 @@
 
 <mapper namespace="com.career.developer">
 	
-	<select id="list" resultType="developerVO">
+	<select id="selectlist" resultType="developerVO">
 		SELECT 
 		       T01.SEQ
 		     , T01.NAME
@@ -31,7 +31,81 @@
 		 <include refid="search"/>
 		 ORDER BY T01.SEQ DESC
 	</select>
-
+	
+	<insert id="insertPerson">	
+		INSERT INTO TPERSON(
+		  NAME
+		, TELNO
+		, EMAIL
+		, SKILL1
+		, SKILL2
+		, SKILL3
+		, IMPORT
+		, BUSINESS
+		, BIRTH
+		, AREA1
+		, AREA2
+		, GRADE
+		, LICENSE
+		, FIRST_STATUS
+		, NOW_STATUS
+		, PROJECT
+		, FINISH_DATE
+		, MEMO
+		, CREATE_DT
+		, EDIT_DT
+		)VALUES(	
+		  #{name}
+		, #{telno}
+		, #{email}
+		, #{skill1}
+		, #{skill2}
+		, #{skill3}
+		, #{import1}
+		, #{business}
+		, #{birth}
+		, #{area1}
+		, #{area2}
+		, #{grade}
+		, #{license}
+		, #{firstStatus}
+		, #{nowStatus}
+		, #{project}
+		, #{finishDate}
+		, #{memo}
+		, now()
+		, now()
+		)
+	</insert>
+	
+	<select id="detailPerson" resultType="developerVO">
+		SELECT 
+		       T01.SEQ
+		     , DATE_FORMAT(T01.CREATE_DT, '%Y-%m-%d') AS CREATE_DT
+		     , DATE_FORMAT(T01.EDIT_DT, '%Y-%m-%d')   AS EDIT_DT
+		     , T01.SKILL1
+		     , T01.SKILL2
+		     , T01.SKILL3
+		     , T01.NAME
+		     , T01.TELNO
+		     , T01.EMAIL
+		     , T01.BIRTH
+		     , T01.FIRST_STATUS
+		     , T01.NOW_STATUS
+		     , T01.BUSINESS
+		     , T01.IMPORT
+		     , T01.GRADE
+		     , T01.MEMO
+		     , T01.FINISH_DATE
+		     , T01.PROJECT
+		     , T01.AREA1
+		     , T01.AREA2
+		     , T01.LICENSE
+		  FROM TPERSON T01
+		 WHERE 1=1
+		   AND SEQ = #{seq}
+	</select>
+	
 	<sql id="search">
 		<choose>
 			<when test="searchOption=='ALL'">
