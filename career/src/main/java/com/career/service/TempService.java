@@ -15,4 +15,6 @@ import com.career.model.vo.TempVO;
 public interface TempService {
 	public List<TempVO> listAll(String searchOption, String keyward) throws Exception;
 	public void insertTemp(TempVO vo, HttpSession session) throws Exception;
+	public TempVO detailTemp(int seq) throws Exception;
+	public void modifyTemp(TempVO vo) throws Exception;
 }

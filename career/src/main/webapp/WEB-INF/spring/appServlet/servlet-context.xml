@@ -37,7 +37,7 @@
 			<mapping path="/content/write.do"/>
 			<mapping path="/temp/list.do"/>
 			<mapping path="/temp/write.do"/>
-			<mapping path="/developer/list.do"/>
+			<mapping path="/person/list.do"/>
 			<beans:ref bean="sessionIntercepter" />
 		</interceptor>
 	</interceptors>

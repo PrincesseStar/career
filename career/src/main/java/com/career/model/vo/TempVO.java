@@ -9,7 +9,7 @@ public class TempVO {
 	
 	private int seq;
 	private String gubun;
-	private String content;
+	private String memo;
 	private String regId;
 	private String regDate;
 	
@@ -25,11 +25,11 @@ public class TempVO {
 	public void setGubun(String gubun) {
 		this.gubun = gubun;
 	}
-	public String getContent() {
-		return content;
+	public String getMemo() {
+		return memo;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 	public String getRegId() {
 		return regId;

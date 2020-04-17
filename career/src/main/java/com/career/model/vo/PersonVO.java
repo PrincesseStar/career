@@ -5,7 +5,7 @@ package com.career.model.vo;
  * @author ChangHyun
  *
  */
-public class DeveloperVO {
+public class PersonVO {
 	
 	private int seq;
 	private String name;

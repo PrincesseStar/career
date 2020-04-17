@@ -42,4 +42,16 @@ public class TempServiceImpl implements TempService{
 		tempDao.insertTemp(vo);
 	}
 
+	@Override
+	public TempVO detailTemp(int seq) throws Exception {
+		// TODO Auto-generated method stub
+		return tempDao.detail(seq);
+	}
+
+	@Override
+	public void modifyTemp(TempVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		tempDao.modifyTemp(vo);
+	}	
+
 }

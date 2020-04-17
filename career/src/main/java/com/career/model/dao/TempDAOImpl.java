@@ -44,5 +44,17 @@ public class TempDAOImpl implements TempDAO{
 		logger.info("temp Insert...");
 		sqlSession.insert("com.career.temp.insertTemp", vo);
 	}
+
+	@Override
+	public TempVO detail(int seq) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("com.career.temp.detailTemp", seq);
+	}
+
+	@Override
+	public void modifyTemp(TempVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update("com.career.temp.modifyTemp", vo);
+	}
 	
 }

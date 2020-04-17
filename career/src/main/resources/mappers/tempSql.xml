@@ -3,50 +3,68 @@
 
 <mapper namespace="com.career.temp">
 	
-	<insert id="insertTemp">
-		INSERT INTO TEMP_BOARD(
-		 GUBUN
-		,CONTENT
-		,REG_ID
-		,REG_DATE
-		)VALUES(
-		 #{gubun}
-		,#{content}
-		,#{regId}
-		,NOW()
-		)
-	</insert>
-	
 	<select id="list" resultType="tempVO">
 		SELECT 
 		       T01.SEQ
 		     , T02.CODE_DTL_NM AS GUBUN
-		     , T01.CONTENT
+		     , T01.MEMO
 		     , T01.REG_ID AS REGID
 		     , DATE_FORMAT(T01.REG_DATE, '%Y-%m-%d : %H:%i') AS REGDATE
-		  FROM chloveon.TEMP_BOARD AS T01
+		  FROM TEMP_BOARD AS T01
 		       LEFT OUTER JOIN 
 		       (
-			SELECT CODE_DTL_CD
-			     , CODE_DTL_NM
-			  FROM chloveon.CODE_DTL
-			 WHERE 1=1
-			   AND CODE_CD = 'MST03'
+				SELECT CODE_DTL_CD
+				     , CODE_DTL_NM
+				  FROM TDTL_CODE
+				 WHERE 1=1
+				   AND CODE_CD = 'MST02'
 		       ) AS T02
 		       ON T01.GUBUN = T02.CODE_DTL_CD
 		 WHERE 1=1
 		 ORDER BY T01.REG_DATE DESC	
 	</select>	
 	
-	<sql id="search">
-		<choose>
-			<when test="searchOption=='ALL'">
-				  AND (T01.TITLE LIKE '%${keyward}%' OR T01.CONTENT LIKE '%${keyward}%')
-			</when>
-			<otherwise>
-				  AND T01.${searchOption} LIKE '%${keyward}%'
-			</otherwise>
-		</choose>
-	</sql>
+	<select id="detailTemp" resultType="tempVO">
+		SELECT 
+		       T01.SEQ
+		     , T02.CODE_DTL_NM AS GUBUN
+		     , T01.MEMO
+		     , T01.REG_ID AS REGID
+		     , DATE_FORMAT(T01.REG_DATE, '%Y-%m-%d : %H:%i') AS REGDATE
+		  FROM TEMP_BOARD AS T01
+		       LEFT OUTER JOIN 
+		       (
+				SELECT CODE_DTL_CD
+				     , CODE_DTL_NM
+				  FROM TDTL_CODE
+				 WHERE 1=1
+				   AND CODE_CD = 'MST02'
+		       ) AS T02
+		       ON T01.GUBUN = T02.CODE_DTL_CD
+		 WHERE 1=1
+		   AND T01.SEQ = #{seq}
+	</select>
+	
+	<insert id="insertTemp">
+		INSERT INTO TEMP_BOARD(
+		 GUBUN
+		,MEMO
+		,REG_ID
+		,REG_DATE
+		)VALUES(
+		 #{gubun}
+		,#{memo}
+		,#{regId}
+		,NOW()
+		)
+	</insert>	
+	
+	<update id="modifyTemp">
+		UPDATE TEMP_BOARD
+		   SET GUBUN = #{gubun}
+		     , MEMO = #{memo}
+		 WHERE 1=1
+		   AND SEQ = #{seq}
+	</update>	
 
 </mapper>

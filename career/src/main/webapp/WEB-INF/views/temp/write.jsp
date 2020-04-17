@@ -6,33 +6,33 @@
 <script>
 	$(document).ready(function(){
 		$("#save").click(function(){
-			oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-			$("#content").submit();
+			oEditors.getById["memo"].exec("UPDATE_CONTENTS_FIELD", []);
+			$("#memo").submit();
 		});
 	});
 </script>
 </head>
 <body>
 	<div class="div_input">
-		<p3>임시저장</p3>
+		<p3>[임시저장]</p3>
 	</div>
-	<form:form name="content" modelAttribute="Content" action="${pageContext.request.contextPath}/temp/save.do" method="post">
+	<form:form name="temp" modelAttribute="temp" action="${pageContext.request.contextPath}/temp/save.do" method="post">
 		<div class="div_input">
 			<label for="" class="label_input">구분</label>
 			<form:select path="gubun" class="select1">
-				<form:options items="${language}" itemLabel="codeDtlNm" itemValue="codeDtlCd"/>
+				<form:options items="${gubun}" itemLabel="codeDtlNm" itemValue="codeDtlCd"/>
 			</form:select>
 		</div>				
 		<div class="div_input1">
 			<label for="" class="label_input1" height="1000">내용</label>
 		</div>
 		<div class="div_smartEditer">
-			<textarea id="content" name="content" class="textarea1"></textarea>
+			<form:textarea path="memo" id="memo" name="memo" class="textarea1"></form:textarea>
 			<script type="text/javascript">
 				var oEditors = [];
 				nhn.husky.EZCreator.createInIFrame({
 					oAppRef: oEditors,
-					elPlaceHolder: "content",
+					elPlaceHolder: "memo",
 					sSkinURI: "${pageContext.request.contextPath}/resources/smartEditor/SmartEditor2Skin.html",
 					htParams : {
 						bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -46,7 +46,7 @@
 					}, //boolean
 					fOnAppLoad : function(){
 						//예제 코드
-						oEditors.getById["content"].exec("PASTE_HTML", [""]);
+						oEditors.getById["memo"].exec("PASTE_HTML", [""]);
 					},
 					fCreator: "createSEditor2"
 				});

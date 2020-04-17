@@ -14,17 +14,9 @@
 </head>
 <body>
 	<div class="div_input">
-		<p3>[개발자 상세]</p3>
+		<p3>[개발자 등록]</p3>
 	</div>
-	<form:form name="developer" modelAttribute="developer" action="${pageContext.request.contextPath}/developer/modify.do" method="post">
-		<div class="div_input">
-			<label for="" class="label_input">NO</label>
-			<form:input type="text" path="seq" class="select1" readonly="true"/>
-			<label for="" class="label_input">최종등록일</label>
-			<form:input type="text" path="createDt" class="select1" readonly="true"/>	
-			<label for="" class="label_input">최종수정일</label>
-			<form:input type="text" path="editDt" class="select1" readonly="true"/>						
-		</div>
+	<form:form name="person" modelAttribute="person" action="${pageContext.request.contextPath}/person/save.do" method="post">
 		<div class="div_input">
 			<label for="" class="label_input">기술1</label>
 			<form:select path="skill1" class="select1">
@@ -92,7 +84,7 @@
 			<label for="" class="label_input1" height="1000">메모</label>
 		</div>
 		<div class="div_smartEditer">
-			<form:textarea path="memo" id="memo" name="memo" class="textarea1"></form:textarea>
+			<textarea id="memo" name="memo" class="textarea1"></textarea>
 			<script type="text/javascript">
 				var oEditors = [];
 				nhn.husky.EZCreator.createInIFrame({
@@ -100,10 +92,10 @@
 					elPlaceHolder: "memo",
 					sSkinURI: "${pageContext.request.contextPath}/resources/smartEditor/SmartEditor2Skin.html",
 					htParams : {
-						bUseToolbar : true,			  // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-						bUseVerticalResizer : true,	  // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-						bUseModeChanger : true,	      // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-						bSkipXssFilter : true,		  // client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
+						bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+						bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+						bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+						bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
 						//aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
 						fOnBeforeUnload : function(){
 							alert("완료!");
@@ -118,7 +110,7 @@
 			</script>	
 		</div>	
 		<div class=div_input2>
-			<button type="submit" id="modify" class="btn_save">수정하기</button>
+			<button type="submit" id="save" class="btn_save">저장하기</button>
 		</div>				
 	</form:form>	
 </body>

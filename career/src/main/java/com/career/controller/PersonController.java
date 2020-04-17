@@ -1,7 +1,9 @@
 package com.career.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -20,23 +22,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.career.model.vo.CommonVO;
 import com.career.model.vo.ContentVO;
-import com.career.model.vo.DeveloperVO;
+import com.career.model.vo.PersonVO;
 import com.career.service.CommonService;
 import com.career.service.ContentService;
-import com.career.service.DeveloperService;
+import com.career.service.PersonService;
 /**
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping(value = "/developer/*", method = RequestMethod.GET)
-public class DeveloperController {
+@RequestMapping(value = "/person/*", method = RequestMethod.GET)
+public class PersonController {
 	
 	@Inject
-	DeveloperService developerService;
+	PersonService personService;
 	@Inject
 	CommonService commonService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(DeveloperController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PersonController.class);
 	
 	/**
 	 * 
@@ -53,10 +55,10 @@ public class DeveloperController {
 		logger.info("list.do call...", locale);
 		logger.info("keyward : "+keyward);
 		logger.info("searchOption : "+searchOption);
-		List<DeveloperVO> list = developerService.list(searchOption, keyward);
+		List<PersonVO> list = personService.list(searchOption, keyward);
 		List<CommonVO> searchCd = commonService.searchCd("MST01");
 		ModelAndView forward = new ModelAndView();
-		forward.setViewName("developer/list");
+		forward.setViewName("person/list");
 		forward.addObject("keyward", keyward);
 		forward.addObject("searchOption", searchOption);
 		forward.addObject("list", list);
@@ -72,7 +74,7 @@ public class DeveloperController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "write.do", method = RequestMethod.POST)
-	public ModelAndView write(DeveloperVO developerVo, BindingResult bindingResult) throws Exception{
+	public ModelAndView write(PersonVO personVo, BindingResult bindingResult) throws Exception{
 		//코드성데이터 조회
 		List<CommonVO> skill = commonService.searchSkill();
 		List<CommonVO> firstStatus = commonService.searchFState();
@@ -82,14 +84,14 @@ public class DeveloperController {
 		List<CommonVO> licenseStatus = commonService.searchLicense();
 		
 		ModelAndView forward = new ModelAndView();
-		forward.addObject("developer", developerVo);
+		forward.addObject("person", personVo);
 		forward.addObject("skill", skill);
 		forward.addObject("firstStatus", firstStatus);
 		forward.addObject("nowStatus", nowStatus);
 		forward.addObject("businessStatus", businessStatus);
 		forward.addObject("importStatus", importStatus);
 		forward.addObject("licenseStatus", licenseStatus);
-		forward.setViewName("developer/write");
+		forward.setViewName("person/write");
 		return forward;
 	}	
 	
@@ -101,12 +103,12 @@ public class DeveloperController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "save.do", method = RequestMethod.POST)	
-	public ModelAndView save(DeveloperVO developerVo, HttpSession session) throws Exception{
-		logger.debug("License : "+developerVo.getLicense());
-		logger.debug("MEMO : "+developerVo.getMemo());
-		developerService.insertPerson(developerVo);
+	public ModelAndView save(PersonVO personVo, HttpSession session) throws Exception{
+		logger.debug("License : "+personVo.getLicense());
+		logger.debug("MEMO : "+personVo.getMemo());
+		personService.insertPerson(personVo);
 		ModelAndView view = new ModelAndView();
-		view.setViewName("redirect:/developer/list.do");
+		view.setViewName("redirect:/person/list.do");
 		return view;
 	}
 	
@@ -120,17 +122,44 @@ public class DeveloperController {
 		List<CommonVO> importStatus = commonService.searchImport();
 		List<CommonVO> licenseStatus = commonService.searchLicense();		
 		logger.info("Seq: "+seq);
-		DeveloperVO developerVo = developerService.detailPerson(seq);
+		PersonVO personVo = personService.detailPerson(seq);
 		ModelAndView view = new ModelAndView();
-		view.addObject("developer", developerVo);
+		view.addObject("person", personVo);
 		view.addObject("skill", skill);
 		view.addObject("firstStatus", firstStatus);
 		view.addObject("nowStatus", nowStatus);
 		view.addObject("businessStatus", businessStatus);
 		view.addObject("importStatus", importStatus);
 		view.addObject("licenseStatus", licenseStatus);		
-		view.setViewName("developer/detail");
+		view.setViewName("person/detail");
 		return view;
 	}	
+	
+	/**
+	 * 
+	 * @param developerVo
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "modify.do", method = RequestMethod.POST)	
+	public ModelAndView modify(PersonVO personVo, HttpSession session) throws Exception{
+		logger.debug("License : "+personVo.getLicense());
+		logger.debug("MEMO : "+personVo.getMemo());
+		personService.modifyPerson(personVo);
+		ModelAndView view = new ModelAndView();
+		view.setViewName("redirect:/person/list.do");
+		return view;
+	}	
+	
+	@RequestMapping(value = "check.do", method = RequestMethod.GET)
+	public Map check(HttpServletRequest request) throws Exception{
+		String telno = request.getParameter("telno");
+		logger.debug("Telno : "+telno);
+		String result = personService.checkTelno(telno);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", map);
+		return map;
+	}
 	
 }

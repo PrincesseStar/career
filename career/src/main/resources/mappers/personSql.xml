@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "=//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.career.developer">
+<mapper namespace="com.career.person">
 	
-	<select id="selectlist" resultType="developerVO">
+	<select id="selectlist" resultType="personVO">
 		SELECT 
 		       T01.SEQ
 		     , T01.NAME
@@ -78,7 +78,32 @@
 		)
 	</insert>
 	
-	<select id="detailPerson" resultType="developerVO">
+	<update id="modifyPerson">
+		UPDATE TPERSON
+		   SET NAME = #{name}
+		     , TELNO = #{telno}
+		     , EMAIL = #{email}
+		     , SKILL1 = #{skill1}
+		     , SKILL2 = #{skill2}
+		     , SKILL3 = #{skill3}
+		     , IMPORT = #{import1}
+		     , BUSINESS = #{business}
+		     , BIRTH = #{birth}
+		     , AREA1 = #{area1}
+		     , AREA2 = #{area2}
+		     , GRADE = #{grade}
+		     , LICENSE = #{license}
+		     , FIRST_STATUS = #{firstStatus}
+		     , NOW_STATUS = #{nowStatus}
+		     , PROJECT = #{project}
+		     , FINISH_DATE = #{finishDate}
+		     , MEMO = #{memo}
+		     , EDIT_DT = now()
+		 WHERE 1=1
+		   AND SEQ = #{seq}
+	</update>
+	
+	<select id="detailPerson" resultType="personVO">
 		SELECT 
 		       T01.SEQ
 		     , DATE_FORMAT(T01.CREATE_DT, '%Y-%m-%d') AS CREATE_DT
@@ -93,7 +118,7 @@
 		     , T01.FIRST_STATUS
 		     , T01.NOW_STATUS
 		     , T01.BUSINESS
-		     , T01.IMPORT
+		     , T01.IMPORT AS IMPORT1
 		     , T01.GRADE
 		     , T01.MEMO
 		     , T01.FINISH_DATE
@@ -105,6 +130,13 @@
 		 WHERE 1=1
 		   AND SEQ = #{seq}
 	</select>
+	
+	<select id="checkTelno" resultType="String">
+		SELECT COUNT(*)
+		  FROM TPERSON
+		 WHERE 1=1
+		   AND REPLACE(TELNO, '-', '') = REPLACE(#{telno}, '-', '')
+	</select>	
 	
 	<sql id="search">
 		<choose>

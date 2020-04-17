@@ -55,7 +55,7 @@ public class TempController {
 		logger.info("searchOption : "+searchOption);
 		List<TempVO> list = tempService.listAll(searchOption, keyward);
 		logger.info("Size : "+list.size());
-		List<CommonVO> searchCd = commonService.searchCd("MST03");
+		List<CommonVO> searchCd = commonService.searchCd("MST02");
 		ModelAndView forward = new ModelAndView();
 		forward.setViewName("temp/list");
 		forward.addObject("keyward", keyward);
@@ -66,20 +66,18 @@ public class TempController {
 	}
 	
 	@RequestMapping(value = "write.do", method = RequestMethod.POST)
-	public ModelAndView contentWrite(ContentVO contentVo, BindingResult bindingResult) throws Exception{
+	public ModelAndView tempWrite(TempVO tempVo, BindingResult bindingResult) throws Exception{
 		//코드성데이터 조회
-		List<CommonVO> searchCd = commonService.searchCd("MST03");
+		List<CommonVO> searchCd = commonService.searchCd("MST02");
 		ModelAndView forward = new ModelAndView();
-		forward.addObject("Content", contentVo);
-		forward.addObject("language", searchCd);
+		forward.addObject("temp", tempVo);
+		forward.addObject("gubun", searchCd);
 		forward.setViewName("temp/write");
 		return forward;
 	}
 
 	@RequestMapping(value = "save.do", method = RequestMethod.POST)
-	public ModelAndView contentSave(TempVO tempVo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info("Gubun : "+tempVo.getGubun());
-		logger.info("Content : "+tempVo.getContent());
+	public ModelAndView tempSave(TempVO tempVo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		tempService.insertTemp(tempVo, session);
 		ModelAndView forward = new ModelAndView();		
 		forward.setViewName("redirect:/temp/list.do");
@@ -87,11 +85,25 @@ public class TempController {
 	}
 	
 	@RequestMapping(value = "detail.do", method = RequestMethod.POST)
-	public ModelAndView tempDetail(TempVO tempVo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView tempDetail(@RequestParam int seq, HttpSession session) throws Exception {
+		logger.info("Seq : "+seq);
+		//코드성데이터 조회
+		List<CommonVO> searchCd = commonService.searchCd("MST02");		
+		TempVO tempVo = tempService.detailTemp(seq);
+		ModelAndView forward = new ModelAndView();	
+		forward.addObject("temp", tempVo);
+		forward.addObject("gubun", searchCd);
+		forward.setViewName("temp/detail");
+		return forward;
+	}	
+	
+	@RequestMapping(value = "modify.do", method = RequestMethod.POST)
+	public ModelAndView tempModify(TempVO tempVo, HttpSession session) throws Exception {
 		logger.info("Gubun : "+tempVo.getGubun());
-		logger.info("Content : "+tempVo.getContent());
-		tempService.insertTemp(tempVo, session);
-		ModelAndView forward = new ModelAndView();		
+		logger.info("Memo  : "+tempVo.getMemo());
+		logger.info("SEQ   : "+tempVo.getSeq());
+		tempService.modifyTemp(tempVo);
+		ModelAndView forward = new ModelAndView();	
 		forward.setViewName("redirect:/temp/list.do");
 		return forward;
 	}	

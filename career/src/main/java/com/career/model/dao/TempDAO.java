@@ -13,4 +13,6 @@ import com.career.model.vo.TempVO;
 public interface TempDAO {
 	public List<TempVO> listAll(String searchOption, String keyward) throws Exception;
 	public void insertTemp(TempVO vo) throws Exception;
+	public TempVO detail(int seq) throws Exception;
+	public void modifyTemp(TempVO vo) throws Exception;
 }

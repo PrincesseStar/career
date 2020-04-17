@@ -12,9 +12,8 @@
 </script>
 </head>
 <body>
-
 <div class="div_input">
-	<p3>메모내역</p3>
+	<p3>[임시저장]</p3>
 	<button type="button" id="write" class="btn_menu">글쓰기</button>
 </div>
 
@@ -24,10 +23,10 @@
 	<c:forEach var="row" items="${list}">
 	<table class="type12">
 		<th width="70%" scope="cols" align="left">${row.gubun}</th>
-		<th width="5%" scope="cols"><a href="${pageContext.request.contextPath}/temp/modify.do?seq=${row.seq}">수정</a></button>
+		<th width="5%" scope="cols"><a href="${pageContext.request.contextPath}/temp/detail.do?seq=${row.seq}">수정</a></button>
 		</th>	
 		<tr>
-			<td colspan="2" align="left">${row.content}</td>
+			<td colspan="2" align="left">${row.memo}</td>
 		</tr>
 	</table>
 	</c:forEach>

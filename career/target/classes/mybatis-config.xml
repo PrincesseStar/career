@@ -13,7 +13,7 @@
         <typeAlias type="com.career.model.vo.CommonVO" alias="commonVO"/>
         <typeAlias type="com.career.model.vo.ProjectVO" alias="projectVO"/>
         <typeAlias type="com.career.model.vo.TempVO" alias="tempVO"/>
-        <typeAlias type="com.career.model.vo.DeveloperVO" alias="developerVO"/>
+        <typeAlias type="com.career.model.vo.PersonVO" alias="personVO"/>
     </typeAliases>
 
     <mappers>
@@ -22,7 +22,7 @@
     	<mapper resource="mappers/memberSql.xml"/>
     	<mapper resource="mappers/projectSql.xml"/>
     	<mapper resource="mappers/tempSql.xml"/>
-    	<mapper resource="mappers/developerSql.xml"/>
+    	<mapper resource="mappers/personSql.xml"/>
     </mappers>
         
 </configuration>
